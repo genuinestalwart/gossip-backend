@@ -19,8 +19,8 @@ If you want to create this project on your own, do the following steps:
 
     ```bash
     npm init -y
-    npm install bcrypt cors dotenv express moment mongodb mongoose
-    npm install --save-dev typescript ts-node-dev tsconfig-paths @types/node @types/express @types/cors @types/bcrypt
+    npm install bcrypt cors dotenv express moment mongodb mongoose jsonwebtoken
+    npm install --save-dev typescript ts-node-dev tsconfig-paths @types/node @types/express @types/cors @types/bcrypt @types/jsonwebtoken
     ```
 
 2. Then, add these extra scripts in there.

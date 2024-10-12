@@ -11,5 +11,5 @@ const user = new Schema({
 	verified: { type: Boolean, required: true },
 });
 
-const User = model("User", user);
+const User = model("User", user, "users");
 export default User;

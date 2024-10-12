@@ -5,6 +5,7 @@ import { ServerApiVersion } from "mongodb";
 import mongoose from "mongoose";
 import { registerRouter } from "@/routes/register";
 import { loginRouter } from "@/routes/login";
+import { userRouter } from "@/routes/user";
 const app = express();
 const port = process.env.PORT || 5000;
 app.use(cors());
@@ -29,6 +30,7 @@ const run = async () => {
 
 		app.use("/register", registerRouter);
 		app.use("/login", loginRouter);
+		app.use("/user", userRouter);
 	} finally {
 		// Ensures that the client will close when you finish/error
 		// await mongoose.disconnect();

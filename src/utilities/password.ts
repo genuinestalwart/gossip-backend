@@ -2,18 +2,18 @@ import bcrypt from "bcrypt";
 
 export const encryptPassword = async (password: string) => {
 	try {
-		const hashedPassword = await bcrypt.hash(password, 10);
-		return hashedPassword;
+		return bcrypt.hash(password, 10);
 	} catch (error) {
 		console.error(error);
+		return false;
 	}
 };
 
 export const verifyPassword = async (plain: string, hashed: string) => {
 	try {
-		const match = await bcrypt.compare(plain, hashed);
-		return match;
+		return bcrypt.compare(plain, hashed);
 	} catch (error) {
 		console.error(error);
+		return false;
 	}
 };
