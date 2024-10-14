@@ -15,7 +15,7 @@
 
 If you want to create this project on your own, do the following steps:
 
-1. Create the `packag.json` file with default config. Then, install the necessary packages.
+1. Create the `package.json` file with default config. Then, install the necessary packages.
 
     ```bash
     npm init -y
@@ -57,3 +57,15 @@ If you want to create this project on your own, do the following steps:
         "include": ["src/**/*"]
     }
     ```
+
+## Hosting
+
+For hosting on vercel, create a `vercel.json` file with these configurations.
+
+```json
+{
+    "version": 2,
+    "builds": [{ "src": "src/index.ts", "use": "@vercel/node" }],
+    "routes": [{ "src": "/(.*)", "dest": "/src/index.ts" }]
+}
+```

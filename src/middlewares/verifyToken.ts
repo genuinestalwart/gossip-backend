@@ -1,4 +1,4 @@
-import { ExtendedRequest } from "@/types/global";
+import { ExtendedRequest } from "../types/global";
 import { Response, NextFunction } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 const tokenSecret = process.env.TOKEN_SECRET || "";

@@ -1,8 +1,8 @@
 import { ObjectId } from "mongodb";
 import express from "express";
-import User from "@/models/User";
-import { verifyToken } from "@/middlewares/verifyToken";
-export const userRouter = express.Router();
+import User from "../models/User";
+import { verifyToken } from "../middlewares/verifyToken";
+const userRouter = express.Router();
 
 userRouter.get("/:id", verifyToken, async (req, res) => {
 	try {
@@ -27,3 +27,5 @@ userRouter.get("/:id", verifyToken, async (req, res) => {
 		res.json(null);
 	}
 });
+
+export default userRouter;

@@ -3,18 +3,27 @@ require("dotenv").config();
 import express from "express";
 import { ServerApiVersion } from "mongodb";
 import mongoose from "mongoose";
-import { registerRouter } from "@/routes/register";
-import { loginRouter } from "@/routes/login";
-import { userRouter } from "@/routes/user";
+import registerRouter from "./routes/register";
+import loginRouter from "./routes/login";
+import userRouter from "./routes/user";
 const app = express();
 const port = process.env.PORT || 5000;
-app.use(cors());
-app.use(express.json());
 
-const uri = `mongodb+srv://${process.env.DB_User}:${process.env.DB_Password}@${process.env.Cluster_1_Link}.mongodb.net/MainDB-1?retryWrites=true&w=majority&appName=Cluster-1`;
+const corsOptions: cors.CorsOptions = {
+	origin: [
+		"http://localhost:3000",
+		"https://gs-gossip-frontend.vercel.app",
+		"*",
+	],
+	credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.use(express.json());
+const uri = process.env.DB_URI || "";
 
 app.get("/", (req, res) => {
-	res.send("Hello world!");
+	res.redirect("https://gs-gossip-frontend.vercel.app/");
 });
 
 const run = async () => {
@@ -41,3 +50,5 @@ run();
 app.listen(port, () => {
 	console.log(`Listening to port ${port}`);
 });
+
+export default app;

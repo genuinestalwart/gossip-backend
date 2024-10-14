@@ -1,8 +1,8 @@
-import User from "@/models/User";
-import { verifyPassword } from "@/utilities/password";
-import { generateToken } from "@/utilities/token";
+import User from "../models/User";
+import { verifyPassword } from "../utilities/password";
+import { generateToken } from "../utilities/token";
 import express from "express";
-export const loginRouter = express.Router();
+const loginRouter = express.Router();
 
 loginRouter.post("/", async (req, res) => {
 	const { email, password } = req.body;
@@ -26,3 +26,5 @@ loginRouter.post("/", async (req, res) => {
 		res.json(null);
 	}
 });
+
+export default loginRouter;
