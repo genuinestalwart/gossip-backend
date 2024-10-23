@@ -1,10 +1,8 @@
 import { ObjectId } from "mongodb";
-import express from "express";
+import { Request, Response } from "express";
 import User from "@/models/User";
-import { verifyToken } from "@/middlewares/verifyToken";
-const userRouter = express.Router();
 
-userRouter.get("/user/:id", verifyToken, async (req, res) => {
+export const getUserData = async (req: Request, res: Response) => {
 	try {
 		const _id = new ObjectId(req.params.id);
 		const user = await User.findOne({ _id });
@@ -26,6 +24,4 @@ userRouter.get("/user/:id", verifyToken, async (req, res) => {
 	} catch (error) {
 		res.json(null);
 	}
-});
-
-export default userRouter;
+};

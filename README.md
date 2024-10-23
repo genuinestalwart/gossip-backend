@@ -20,14 +20,14 @@ If you want to create this project on your own, do the following steps:
     ```bash
     npm init -y
     npm i bcrypt cors dotenv express moment mongodb mongoose jsonwebtoken
-    npm i -D typescript nodemon rimraf typescript-transform-paths ts-patch @types/node @types/express @types/cors @types/bcrypt @types/jsonwebtoken
+    npm i -D typescript nodemon rimraf tsconfig-paths typescript-transform-paths ts-patch @types/node @types/express @types/cors @types/bcrypt @types/jsonwebtoken
     ```
 
 2. Then, add these extra scripts in there.
 
     ```json
     "build": "rimraf dist && tspc",
-    "dev": "nodemon src/index.ts",
+    "dev": "nodemon -r tsconfig-paths/register src/index.ts",
     "start": "nodemon src/index.ts",
     ```
 
@@ -38,7 +38,7 @@ If you want to create this project on your own, do the following steps:
     npx tsc --init
     ```
 
-4. Finally, generate a `tsconfig.json` file with these settings.
+4. After that, generate a `tsconfig.json` file with these settings.
 
     ```json
     {
@@ -64,6 +64,20 @@ If you want to create this project on your own, do the following steps:
         "include": ["src/**/*"]
     }
     ```
+
+5. Finally, add your own environment variables in `.env` file.
+
+    ```env
+    DB_URI="your mongodb_uri"
+    TOKEN_SECRET="your token secret for generating access token"
+    ```
+
+If you don't know how to generate a random string to use as a token secret, try this in the terminal:
+
+```bash
+node
+require("crypto").randomBytes(64).toString("hex")
+```
 
 ## Hosting
 
