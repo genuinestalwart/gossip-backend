@@ -2,9 +2,9 @@ import { ObjectId } from "mongodb";
 import express from "express";
 import User from "@/models/User";
 import { verifyToken } from "@/middlewares/verifyToken";
-export const userRouter = express.Router();
+const userRouter = express.Router();
 
-userRouter.get("/:id", verifyToken, async (req, res) => {
+userRouter.get("/user/:id", verifyToken, async (req, res) => {
 	try {
 		const _id = new ObjectId(req.params.id);
 		const user = await User.findOne({ _id });
@@ -27,3 +27,5 @@ userRouter.get("/:id", verifyToken, async (req, res) => {
 		res.json(null);
 	}
 });
+
+export default userRouter;

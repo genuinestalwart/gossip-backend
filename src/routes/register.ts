@@ -3,9 +3,9 @@ import { encryptPassword } from "@/utilities/password";
 import { generateToken } from "@/utilities/token";
 import express from "express";
 import moment from "moment";
-export const registerRouter = express.Router();
+const registerRouter = express.Router();
 
-registerRouter.post("/", async (req, res) => {
+registerRouter.post("/register", async (req, res) => {
 	const { email, firstName, fullName, password: rawPassword } = req.body;
 
 	if (!email || !firstName || !fullName || !rawPassword) {
@@ -34,3 +34,5 @@ registerRouter.post("/", async (req, res) => {
 	const accessToken = generateToken(data);
 	res.json({ accessToken, ...data });
 });
+
+export default registerRouter;
