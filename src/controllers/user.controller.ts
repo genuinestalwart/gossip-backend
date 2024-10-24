@@ -1,11 +1,11 @@
 import { ObjectId } from "mongodb";
 import { Request, Response } from "express";
-import User from "@/models/User";
+import UserModel from "@/models/users.model";
 
 export const getUserData = async (req: Request, res: Response) => {
 	try {
 		const _id = new ObjectId(req.params.id);
-		const user = await User.findOne({ _id });
+		const user = await UserModel.findOne({ _id });
 
 		res.json(
 			user
@@ -16,6 +16,7 @@ export const getUserData = async (req: Request, res: Response) => {
 						firstName: user.firstName,
 						fullName: user.fullName,
 						id: user._id.toString(),
+						linkedAccounts: user.linkedAccounts,
 						role: user.role,
 						verified: user.verified,
 				  }

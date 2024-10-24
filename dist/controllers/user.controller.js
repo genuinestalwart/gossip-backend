@@ -5,11 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getUserData = void 0;
 const mongodb_1 = require("mongodb");
-const User_1 = __importDefault(require("../models/User"));
+const users_model_1 = __importDefault(require("../models/users.model"));
 const getUserData = async (req, res) => {
     try {
         const _id = new mongodb_1.ObjectId(req.params.id);
-        const user = await User_1.default.findOne({ _id });
+        const user = await users_model_1.default.findOne({ _id });
         res.json(user
             ? {
                 avatar: user.avatar,
@@ -18,6 +18,7 @@ const getUserData = async (req, res) => {
                 firstName: user.firstName,
                 fullName: user.fullName,
                 id: user._id.toString(),
+                linkedAccounts: user.linkedAccounts,
                 role: user.role,
                 verified: user.verified,
             }
